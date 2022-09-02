@@ -16,14 +16,53 @@ const displayCategories = catagories =>{
    
     for(const category of catagories){
     const catagoryDiv = document.createElement('div');
-    catagoryDiv.innerHTML = `<div class="fs-4 fw-bold">${category.category_name}</div>`
+    catagoryDiv.innerHTML = `<div onclick="loadCategoryDetails(${category.category_id})" class="fs-4 fw-bold">${category.category_name}</div>`
 
     catagoryContainer.appendChild(catagoryDiv);
 
     }
 }
 
+// load Category Details by category id
 
+const loadCategoryDetails = async id =>{
+    const url = `https://openapi.programming-hero.com/api/news/category/0${id}`;
+    try{
+        const res = await fetch(url);
+        const data = await res.json();
+        displayCategoryDetails(data.data);
+    }
+    catch(error){
+        console.log(error);
+    }
+  }
+        
+//   display Category Details
+
+const displayCategoryDetails = news =>{
+    console.log(news);
+    const catagoryDetail = document.getElementById('category-details');
+    news.forEach(list =>{
+        const listDiv = document.createElement('div');
+        listDiv.classList.add('row' , 'my-3');
+        listDiv.innerHTML = `
+        <div class="col-lg-2 col-sm-1 border-3" >
+          <img src="${list.thumbnail_url}" class="rounded-start" alt="...">
+        </div>
+
+        <div class="col-lg-10 col-sm-2">
+            <div class="card-body ms-5">
+              <h5 class="card-title fw-bold fs-3">${list.title}</h5>
+              <p class="card-text fs-4">${list.details.slice(0,300)}</p>
+              </div>
+        </div>
+        `
+        catagoryDetail.appendChild(listDiv);
+    })
+              
+        
+
+}
 
 
 
