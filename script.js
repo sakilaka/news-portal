@@ -40,8 +40,11 @@ const loadCategoryDetails = async id =>{
 //   display Category Details
 
 const displayCategoryDetails = news =>{
-    console.log(news);
+    // console.log(news);
+
     const catagoryDetail = document.getElementById('category-details');
+    
+    catagoryDetail.innerHTML = ``;
     news.forEach(list =>{
         const listDiv = document.createElement('div');
         listDiv.classList.add('row' , 'my-3','border' ,'border-dark');
@@ -57,28 +60,68 @@ const displayCategoryDetails = news =>{
               <div class="d-flex">
                <img class="rounded-pill" style="width:60px; height:60px;" src="${list.author.img}" >
                  <div class="ms-2">
-                 <h5 >${list.author.name}</h5>
+                 <h5 >${list.author ? list.author.name : 'No Author name' }</h5>
                  <p>${list.author.published_date}</p>
                  </div>
 
                  <div class="d-flex" style="margin-left: 120px;margin-top: 8px;">
                     <i class="fa-solid fa-eye mt-1"></i>
-                    <h5 class="ms-3">${list.total_view}</h5>
+                    <h5 class="ms-3">${list.total_view ? list.total_view : 'No View' }</h5>
                  </div>
 
-
+                 <button onclick="loadListDetails('${list._id}')" style="margin-left: 150px;margin-top: 8px;" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#listDetails">View Details</button>
 
               </div>
+           
             </div>
         </div>
-        `
-        catagoryDetail.appendChild(listDiv);
-    })
-              
+           `
+           catagoryDetail.appendChild(listDiv);
+       })
+       toggleSpinner(false)
         
-
 }
 
+const toggleSpinner = isLoading =>{
+    const loaderSection = document.getElementById('loader');
+    if(isLoading){
+      loaderSection.classList.remove('d-none');
+    }
+    else{
+      loaderSection.classList.add('d-none')
+    }
+  }
+
+// load one list details 
+
+ const loadListDetails = async news_id =>{
+    const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+    try{
+        const res = await fetch(url);
+        const data = await res.json();
+        displayListDetails(data.data[0]);
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+const displayListDetails = info =>{
+    console.log(info);
+    const listTitle = document.getElementById('listDetailsLabel');
+    listTitle.innerHTML = `${info.author ? info.author.name : 'No Author'}`;
+    listTitle.innerText = info.author.name;
+    const listTable = document.getElementById('listBody');
+    listTable.innerHTML = `
+    <h5>publish Date : ${info.author.published_date ? info.author.published_date : 'no Publish Date' }</h5>
+    <h5>Views : ${info.total_view ? info.total_view : 'no View ' }</h5>
+    <h5>Rating Number : ${info.rating.number ? info.rating.number : 'no Rating ' }</h5>
+    <h5>Rating Badge : ${info.rating.badge ? info.rating.badge : 'no badge ' }</h5>
+    <h5>Is trending : ${info.others_info ? info.others_info.is_trending : 'no information ' }</h5>
+    <h5>Is today pick : ${info.others_info ? info.others_info.is_todays_pick : 'no information ' }</h5>
+    `
+}
+    
 
 
 
