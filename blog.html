@@ -19,6 +19,7 @@
              <div class="d-flex" role="search">
                 <a class="text-dark text-decoration-none fs-4" href="index.html">news</a>
                 <a class="ms-3 text-danger text-decoration-none fs-4" href="blog.html">blog</a>
+                <img class="rounded-pill ms-2" src="images/my.jpg" alt="" style="height: 50px; width: 50px;">
             </div>
            </div>
          </nav>
@@ -37,31 +38,71 @@
           </h2>
           <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
             <div class="accordion-body">
-              <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                <h4 class="fw-bold">var</h4>
+                Before the advent of ES6, var declarations ruled. There are issues associated with variables declared with var, though. That is why it was necessary for new ways to declare variables to emerge. First, let's get to understand var more before we discuss those issues.
+                <h4 class="fw-bold">Let</h4>
+                let is now preferred for variable declaration. It's no surprise as it comes as an improvement to var declarations. It also solves the problem with var that we just covered. Let's consider why this is so.
+                <h4 class="fw-bold">Const</h4>
+                Variables declared with the const maintain constant values. const declarations share some similarities with let declarations.
             </div>
           </div>
         </div>
         <div class="accordion-item">
           <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-             
+             Difference between Regular function and arrow function.
             </button>
           </h2>
           <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
             <div class="accordion-body">
-              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                  <h5> Regular Function Syntax ES5:</h5>
+                    var add = function(x, y) {
+                      return x + y;
+                    };
+                    // Arrow function ES6
+                    let add = (x, y) => { return x + y };
+
+                 <h5> Arrow Function :</h5>
+                    Curly brackets are not required if only one expression is present. <br>
+                      let add = (x, y) => x + y;
+                    If there only one argument, then the parentheses are not required either: <br>
+                      let squareNum = x => x * x;
+
+                       <h3> No duplicate named parameters</h3>
+                      <p>
+                        Arrow functions can never have duplicate named parameters, whether in strict or non-strict mode.
+                        However, We can use duplicate named parameters for regular function in non-strict mode.   
+                     </p>
+                       <h3> Using a new keyword</h3>
+                      <p>
+                        Regular functions created using function declarations or expressions are constructible and callable. Regular functions are constructible; they can be called using the new keyword.
+
+                        However, the arrow functions are only callable and not constructible, i.e., arrow functions can never be used as constructor functions.   
+                     </p>
+
+
             </div>
           </div>
         </div>
         <div class="accordion-item">
           <h2 class="accordion-header" id="panelsStayOpen-headingThree">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-              Accordion Item #3
+             Define .map() .forEach .filter .find??
             </button>
           </h2>
           <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
             <div class="accordion-body">
-              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+             <h3> When to use forEach?</h3>
+              <p>forEach() is great you need to execute a function for each individual element in an array. Good practice is that you should use .forEach() when you can’t use other array methods to accomplish your goal. I know this may sound vague, but .forEach() is a generic tool… only use it when you can’t use a more specialized tool.</p>
+              
+             <h3>  When to use map?</h3>
+              .map() when you want to transform elements in an array.
+              
+              <h3>When to use filter?</h3>
+              .filter() when you want to select a subset of multiple elements from an array.
+              
+            <h3>  When to use find?</h3>
+              .find() When you want to select a single element from an array.
             </div>
           </div>
         </div>

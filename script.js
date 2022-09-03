@@ -16,7 +16,7 @@ const displayCategories = catagories =>{
    
     for(const category of catagories){
     const catagoryDiv = document.createElement('div');
-    catagoryDiv.innerHTML = `<div onclick="loadCategoryDetails(${category.category_id})" class="fs-4 fw-bold">${category.category_name}</div>`
+    catagoryDiv.innerHTML = `<div onclick="loadCategoryDetails(${category.category_id})" class="fs-4 fw-bold p-3 bg-dark text-white">${category.category_name}</div>`
     
 
     catagoryContainer.appendChild(catagoryDiv);
