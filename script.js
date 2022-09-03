@@ -52,15 +52,15 @@ const displayCategoryDetails = news =>{
         const listDiv = document.createElement('div');
         listDiv.classList.add('row' , 'my-3','border' ,'border-dark');
         listDiv.innerHTML = `
-        <div class="col-lg-2 col-sm-1 border-3" >
+        <div class="col-lg-2 col-sm-12 border-3" >
           <img src="${list.thumbnail_url}" class="rounded-start" alt="...">
         </div>
 
-        <div class="col-lg-10 col-sm-2">
+        <div class="col-lg-10 col-sm-8">
             <div class="card-body ms-5">
               <h5 class="card-title fw-bold fs-3">${list.title}</h5>
               <p class="card-text fs-5">${list.details.slice(0,500)}</p>
-              <div class="d-flex">
+              <div class="d-flex styles">
                <img class="rounded-pill" style="width:60px; height:60px;" src="${list.author.img}" >
                  <div class="ms-2">
                  <h5 >${list.author ? list.author.name : 'No Author name' }</h5>
@@ -85,9 +85,6 @@ const displayCategoryDetails = news =>{
           //     return b.total_view - a.total_view;
           // });
            catagoryDetail.appendChild(listDiv);
-
-         
-        
 
 
 // for item count 
