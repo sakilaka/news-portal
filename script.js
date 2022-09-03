@@ -17,15 +17,18 @@ const displayCategories = catagories =>{
     for(const category of catagories){
     const catagoryDiv = document.createElement('div');
     catagoryDiv.innerHTML = `<div onclick="loadCategoryDetails(${category.category_id})" class="fs-4 fw-bold">${category.category_name}</div>`
+    
 
     catagoryContainer.appendChild(catagoryDiv);
 
     }
 }
 
+
 // load Category Details by category id
 
 const loadCategoryDetails = async id =>{
+  toggleSpinner(true);
     const url = `https://openapi.programming-hero.com/api/news/category/0${id}`;
     try{
         const res = await fetch(url);
@@ -76,7 +79,21 @@ const displayCategoryDetails = news =>{
             </div>
         </div>
            `
+            //  Sort by total_views
+
+          //   list.sort((a, b) => {
+          //     return b.total_view - a.total_view;
+          // });
            catagoryDetail.appendChild(listDiv);
+
+         
+        
+
+
+// for item count 
+      const textField = document.getElementById('text-field');
+      textField.innerText = catagoryDetail.childNodes ? catagoryDetail.childNodes.length : 'No ' ;
+
        })
        toggleSpinner(false)
         
@@ -90,7 +107,10 @@ const toggleSpinner = isLoading =>{
     else{
       loaderSection.classList.add('d-none')
     }
-  }
+  }  
+  
+ 
+  
 
 // load one list details 
 
@@ -107,7 +127,8 @@ const toggleSpinner = isLoading =>{
 }
 
 const displayListDetails = info =>{
-    console.log(info);
+    // console.log(info);
+    
     const listTitle = document.getElementById('listDetailsLabel');
     listTitle.innerHTML = `${info.author ? info.author.name : 'No Author'}`;
     listTitle.innerText = info.author.name;
