@@ -151,7 +151,7 @@ const displayListDetails = info =>{
     
     const listTable = document.getElementById('listBody');
     listTable.innerHTML = `
-    <p class="card-text">${info.details}</p>
+    <p class="card-text">${info.details.slice(0,500)+'....'}</p>
     <h5>publish Date : ${info.author.published_date ? info.author.published_date : 'no Publish Date' }</h5>
     <h5>Views : ${info.total_view ? info.total_view : 'no View ' }</h5>
     <h5>Rating Number : ${info.rating.number ? info.rating.number : 'no Rating ' }</h5>
