@@ -48,6 +48,24 @@ const displayCategoryDetails = news =>{
     const catagoryDetail = document.getElementById('category-details');
     
     catagoryDetail.innerHTML = ``;
+     //  Sort by total_views
+
+     if(news.length == 0){
+      const card = document.createElement('div');
+      card.innerHTML=`
+      <p class="fs-2 text-center text-dark "style ="height: 300px; margin-top:200px">No news find!!</p>
+      `;
+      catagoryDetail.appendChild(card);
+
+    }else{
+    news.sort((a,b) =>{
+
+      return b.total_view - a.total_view;
+    });
+  }
+
+    
+
     news.forEach(list =>{
         const listDiv = document.createElement('div');
         listDiv.classList.add('row' , 'my-3','border' ,'border-dark');
@@ -59,7 +77,7 @@ const displayCategoryDetails = news =>{
         <div class="col-lg-10 col-sm-8">
             <div class="card-body ms-5">
               <h5 class="card-title fw-bold fs-3">${list.title}</h5>
-              <p class="card-text fs-5">${list.details.slice(0,500)}</p>
+              <p class="card-text fs-5">${list.details.slice(0,500)+'....'}</p>
               <div class="d-flex styles">
                <img class="rounded-pill" style="width:60px; height:60px;" src="${list.author.img}" >
                  <div class="ms-2">
@@ -79,17 +97,18 @@ const displayCategoryDetails = news =>{
             </div>
         </div>
            `
-            //  Sort by total_views
-
-          //   list.sort((a, b) => {
-          //     return b.total_view - a.total_view;
-          // });
+          
+          
            catagoryDetail.appendChild(listDiv);
+
+
+       
+      
 
 
 // for item count 
       const textField = document.getElementById('text-field');
-      textField.innerText = catagoryDetail.childNodes ? catagoryDetail.childNodes.length : 'No ' ;
+      textField.innerText = catagoryDetail.childNodes ? catagoryDetail.childNodes.length : 'No' ;
 
        })
        toggleSpinner(false)
@@ -127,10 +146,12 @@ const displayListDetails = info =>{
     // console.log(info);
     
     const listTitle = document.getElementById('listDetailsLabel');
-    listTitle.innerHTML = `${info.author ? info.author.name : 'No Author'}`;
-    listTitle.innerText = info.author.name;
+    
+    listTitle.innerHTML = `<img src="${info.image_url}" class="img-fluid rounded-start" alt="...">`;
+    
     const listTable = document.getElementById('listBody');
     listTable.innerHTML = `
+    <p class="card-text">${info.details}</p>
     <h5>publish Date : ${info.author.published_date ? info.author.published_date : 'no Publish Date' }</h5>
     <h5>Views : ${info.total_view ? info.total_view : 'no View ' }</h5>
     <h5>Rating Number : ${info.rating.number ? info.rating.number : 'no Rating ' }</h5>
@@ -139,8 +160,5 @@ const displayListDetails = info =>{
     <h5>Is today pick : ${info.others_info ? info.others_info.is_todays_pick : 'no information ' }</h5>
     `
 }
-    
-
-
-
-loadCategories();
+   
+loadCategories()
